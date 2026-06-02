@@ -234,16 +234,3 @@ documind/
 → The question is too vague or unrelated to the document
 → Try a more specific question
 
----
-
-## Key Technical Concepts (for interviews)
-
-- **RAG (Retrieval Augmented Generation)**: Instead of asking the LLM to memorize the document, we retrieve relevant chunks at query time and give them as context. This prevents hallucination and allows citing sources.
-
-- **Chunking strategy**: Documents are split into 800-token overlapping chunks (150 token overlap) using RecursiveCharacterTextSplitter — overlap preserves context across chunk boundaries.
-
-- **Vector embeddings**: Each chunk is converted to a 768-dimension vector using `nomic-embed-text`. Similar meaning = similar vectors = close in vector space.
-
-- **Cosine similarity search**: ChromaDB finds the top-5 chunks whose vectors are most similar (by cosine similarity) to the query vector.
-
-- **Streaming SSE**: The LLM response streams token-by-token via Server-Sent Events, giving the ChatGPT-like typing experience without WebSockets.
